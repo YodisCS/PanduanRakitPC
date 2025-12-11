@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perakitan PC - Panduan Lengkap</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 1.2rem 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: white;
+        font-size: 1.8rem;
+        font-weight: 700;
+      }
+
+      .logo i {
+        font-size: 2rem;
+        color: #ff6b35;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2.5rem;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+        font-size: 1rem;
+      }
+
+      .nav-links a:hover {
+        color: #ff6b35;
+      }
+
+      .burger {
+        display: none;
+        cursor: pointer;
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("/images/bg.jpeg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        padding: 0 5%;
+      }
+
+      .hero-content {
+        background: rgba(50, 50, 50, 0.85);
+        padding: 4rem;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        max-width: 800px;
+        animation: fadeIn 1s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        margin-bottom: 2.5rem;
+        opacity: 0.95;
+      }
+
+      .cta-button {
+        background: #ff6b35;
+        color: white;
+        padding: 1rem 3rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .cta-button:hover {
+        background: #ff8555;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+      }
+
+      /* Components Section */
+      .components {
+        padding: 5rem 5%;
+        background: #f8f9fa;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #2c3e50;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 100px;
+        height: 4px;
+        background: #ff6b35;
+        margin: 1rem auto;
+        border-radius: 2px;
+      }
+
+      .component-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2.5rem;
+        margin-top: 3rem;
+      }
+
+      .component-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .component-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .component-image-container {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .component-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s;
+      }
+
+      .component-card:hover .component-image {
+        transform: scale(1.1);
+      }
+
+      .component-icon-placeholder {
+        font-size: 4rem;
+        color: white;
+        opacity: 0.3;
+      }
+
+      .component-content {
+        padding: 2rem;
+      }
+
+      .component-icon {
+        font-size: 2.5rem;
+        color: #ff6b35;
+        margin-bottom: 1rem;
+      }
+
+      .component-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #2c3e50;
+      }
+
+      .component-description {
+        color: #666;
+        line-height: 1.7;
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .component-specs {
+        background: #f8f9fa;
+        padding: 1rem;
+        border-radius: 10px;
+        margin-top: 1rem;
+      }
+
+      .component-specs h4 {
+        font-size: 0.9rem;
+        color: #ff6b35;
+        margin-bottom: 0.8rem;
+        font-weight: 600;
+      }
+
+      .component-specs ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .component-specs li {
+        color: #555;
+        font-size: 0.85rem;
+        padding: 0.4rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .component-specs li::before {
+        content: "•";
+        color: #ff6b35;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      .upload-placeholder {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        font-size: 0.75rem;
+        color: #666;
+      }
+
+      /* Info Section */
+      .info-section {
+        padding: 5rem 5%;
+        background: white;
+      }
+
+      .info-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+
+      .info-image {
+        width: 100%;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .info-text h2 {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+        color: #2c3e50;
+      }
+
+      .info-text p {
+        color: #666;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        font-size: 1.05rem;
+      }
+
+      .info-list {
+        list-style: none;
+        margin: 2rem 0;
+      }
+
+      .info-list li {
+        padding: 0.8rem 0;
+        color: #555;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .info-list i {
+        color: #ff6b35;
+        font-size: 1.2rem;
+      }
+
+      /* Footer */
+      footer {
+        background: #1a1a1a;
+        color: white;
+        padding: 2rem 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .social-links a {
+        color: white;
+        font-size: 1.5rem;
+        transition: color 0.3s;
+      }
+
+      .social-links a:hover {
+        color: #ff6b35;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .nav-links {
+          position: fixed;
+          right: -100%;
+          top: 70px;
+          flex-direction: column;
+          background: rgba(0, 0, 0, 0.95);
+          width: 100%;
+          text-align: center;
+          transition: 0.3s;
+          padding: 2rem 0;
+          gap: 1.5rem;
+        }
+
+        .nav-links.active {
+          right: 0;
+        }
+
+        .burger {
+          display: block;
+        }
+
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+
+        .hero p {
+          font-size: 1.1rem;
+        }
+
+        .hero-content {
+          padding: 2.5rem 1.5rem;
+        }
+
+        .info-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .component-grid {
+          grid-template-columns: 1fr;
+        }
+
+        footer {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        nav {
+          padding: 1rem 4%;
+        }
+
+        .hero h1 {
+          font-size: 1.8rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .cta-button {
+          padding: 0.8rem 2rem;
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="logo">
+        <i class="fas fa-desktop"></i>
+        <span>PC Builder</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#components">Komponen</a></li>
+        <li><a href="#panduan">Panduan</a></li>
+        <li><a href="#contact">Kontak</a></li>
+      </ul>
+      <div class="burger">
+        <i class="fas fa-bars"></i>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Rakit PC Impian Anda</h1>
+        <p>Panduan Lengkap Merakit Komputer untuk Pemula hingga Profesional</p>
+        <button class="cta-button">Mulai Belajar</button>
+      </div>
+    </section>
+
+    <!-- Components Section -->
+    <section id="components" class="components">
+      <h2 class="section-title">Komponen Utama PC</h2>
+      <div class="component-grid">
+        <!-- Processor Card -->
+        <div class="component-card">
+          <div class="component-image-container">
+            <img src="/images/cpu.jpg" alt="CPU" class="component-image" />
+          </div>
+          <div class="component-content">
+            <div class="component-icon">
+              <i class="fas fa-microchip"></i>
+            </div>
+            <h3>Processor (CPU)</h3>
+            <p class="component-description">
+              Processor atau CPU (Central Processing Unit) adalah otak dari
+              komputer yang bertanggung jawab menjalankan semua instruksi dan
+              perhitungan. Kecepatan diukur dalam GHz (GigaHertz) dan jumlah
+              core menentukan kemampuan multitasking.
+            </p>
+            <div class="component-specs">
+              <h4>Yang Perlu Diperhatikan:</h4>
+              <ul>
+                <li>Jumlah Core dan Thread (4-16 core untuk gaming/editing)</li>
+                <li>Clock Speed (3.0 GHz - 5.0 GHz+)</li>
+                <li>Socket compatibility dengan motherboard</li>
+                <li>TDP (konsumsi daya dan panas)</li>
+                <li>
+                  Brand: Intel (Core i3/i5/i7/i9) atau AMD (Ryzen 3/5/7/9)
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- RAM Card -->
+        <div class="component-card">
+          <div class="component-image-container">
+            <img src="/images/ram.jpg" alt="RAM" class="component-image" />
+          </div>
+          <div class="component-content">
+            <div class="component-icon">
+              <i class="fas fa-memory"></i>
+            </div>
+            <h3>RAM (Memory)</h3>
+            <p class="component-description">
+              RAM (Random Access Memory) adalah memori sementara yang menyimpan
+              data aplikasi yang sedang berjalan. Semakin besar kapasitas RAM,
+              semakin banyak aplikasi yang bisa dijalankan bersamaan tanpa lag.
+            </p>
+            <div class="component-specs">
+              <h4>Yang Perlu Diperhatikan:</h4>
+              <ul>
+                <li>
+                  Kapasitas: 8GB (minimal), 16GB (ideal), 32GB+ (professional)
+                </li>
+                <li>Tipe: DDR4 atau DDR5 (sesuai motherboard)</li>
+                <li>Speed: 2666MHz, 3200MHz, 3600MHz, atau lebih tinggi</li>
+                <li>Dual Channel (2 stick) lebih baik dari Single Channel</li>
+                <li>Latency (CL16, CL18 - semakin rendah semakin baik)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Storage Card -->
+        <div class="component-card">
+          <div class="component-image-container">
+            <img
+              src="/images/storage.jpg"
+              alt="Storage SSD"
+              class="component-image"
+            />
+          </div>
+          <div class="component-content">
+            <div class="component-icon">
+              <i class="fas fa-hdd"></i>
+            </div>
+            <h3>Storage (SSD/HDD)</h3>
+            <p class="component-description">
+              Storage adalah tempat penyimpanan permanen untuk sistem operasi,
+              aplikasi, dan data. SSD jauh lebih cepat dari HDD, ideal untuk OS
+              dan aplikasi. HDD cocok untuk penyimpanan data besar dengan budget
+              terbatas.
+            </p>
+            <div class="component-specs">
+              <h4>Yang Perlu Diperhatikan:</h4>
+              <ul>
+                <li>SSD NVMe M.2 (tercepat, 3000-7000 MB/s)</li>
+                <li>SSD SATA (cepat, 500-550 MB/s)</li>
+                <li>HDD (kapasitas besar, lebih lambat, lebih murah)</li>
+                <li>Kapasitas: 256GB-1TB untuk SSD, 1TB-4TB untuk HDD</li>
+                <li>Kombinasi: SSD untuk OS + HDD untuk data</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- GPU Card -->
+        <div class="component-card">
+          <div class="component-image-container">
+            <img
+              src="/images/vga.jpg"
+              alt="Graphics Card GPU"
+              class="component-image"
+            />
+          </div>
+          <div class="component-content">
+            <div class="component-icon">
+              <i class="fas fa-tv"></i>
+            </div>
+            <h3>GPU / VGA Card</h3>
+            <p class="component-description">
+              GPU (Graphics Processing Unit) atau VGA Card adalah komponen yang
+              memproses grafis dan video. Sangat penting untuk gaming, video
+              editing, 3D rendering, dan machine learning. CPU modern sudah
+              punya GPU terintegrasi untuk penggunaan basic.
+            </p>
+            <div class="component-specs">
+              <h4>Yang Perlu Diperhatikan:</h4>
+              <ul>
+                <li>VRAM: 4GB (entry), 6-8GB (mid), 12GB+ (high-end)</li>
+                <li>Brand: NVIDIA (RTX/GTX) atau AMD (Radeon RX)</li>
+                <li>Resolusi gaming: 1080p, 1440p, atau 4K</li>
+                <li>Power consumption dan kebutuhan PSU</li>
+                <li>Ukuran fisik (pastikan muat di casing)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Motherboard Card -->
+        <div class="component-card">
+          <div class="component-image-container">
+            <img
+              src="/images/motherboard.jpg"
+              alt="Motherboard"
+              class="component-image"
+            />
+          </div>
+          <div class="component-content">
+            <div class="component-icon">
+              <i class="fas fa-server"></i>
+            </div>
+            <h3>Motherboard</h3>
+            <p class="component-description">
+              Motherboard adalah papan sirkuit utama yang menghubungkan semua
+              komponen PC. Memilih motherboard yang tepat menentukan upgrade
+              path di masa depan dan fitur yang tersedia seperti WiFi,
+              Bluetooth, dan jumlah port.
+            </p>
+            <div class="component-specs">
+              <h4>Yang Perlu Diperhatikan:</h4>
+              <ul>
+                <li>Socket CPU: LGA 1700 (Intel), AM5/AM4 (AMD)</li>
+                <li>Chipset: B660, Z790 (Intel) atau B550, X670 (AMD)</li>
+                <li>Form Factor: ATX (besar), Micro-ATX, Mini-ITX (kecil)</li>
+                <li>Slot RAM: 2 atau 4 slot (untuk upgrade)</li>
+                <li>Slot M.2, PCIe, USB ports, WiFi/Bluetooth</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- PSU Card -->
+        <div class="component-card">
+          <div class="component-image-container">
+            <img
+              src="/images/psu.jpg"
+              alt="PSU (Power Supply)"
+              class="component-image"
+            />
+          </div>
+          <div class="component-content">
+            <div class="component-icon">
+              <i class="fas fa-plug"></i>
+            </div>
+            <h3>PSU (Power Supply)</h3>
+            <p class="component-description">
+              PSU (Power Supply Unit) menyuplai listrik ke seluruh komponen PC.
+              Jangan pernah murah-murah beli PSU karena PSU jelek bisa merusak
+              komponen lain. Investasi pada PSU berkualitas akan melindungi PC
+              Anda jangka panjang.
+            </p>
+            <div class="component-specs">
+              <h4>Yang Perlu Diperhatikan:</h4>
+              <ul>
+                <li>Wattage: 500W-650W (office), 750W-850W (gaming)</li>
+                <li>Efisiensi: 80+ Bronze, Silver, Gold, Platinum, Titanium</li>
+                <li>Modular atau Non-modular (kabel management)</li>
+                <li>Proteksi: OVP, UVP, OCP, SCP</li>
+                <li>
+                  Brand terpercaya: Corsair, Seasonic, EVGA, Cooler Master
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cooling Card -->
+        <div class="component-card">
+          <div class="component-image-container">
+            <img
+              src="/images/cooling.jpg"
+              alt="Cooling"
+              class="component-image"
+            />
+          </div>
+          <div class="component-content">
+            <div class="component-icon">
+              <i class="fas fa-wind"></i>
+            </div>
+            <h3>Cooling System</h3>
+            <p class="component-description">
+              Sistem pendingin menjaga suhu CPU tetap optimal untuk performa dan
+              umur komponen. Suhu tinggi menurunkan performa dan memperpendek
+              umur CPU. Ada dua jenis utama: Air Cooler dan Liquid Cooler (AIO).
+            </p>
+            <div class="component-specs">
+              <h4>Yang Perlu Diperhatikan:</h4>
+              <ul>
+                <li>Air Cooler: murah, reliable, perawatan minimal</li>
+                <li>AIO Liquid Cooler: pendinginan maksimal, lebih mahal</li>
+                <li>Ukuran: Tower height untuk Air, Radiator size untuk AIO</li>
+                <li>TDP Rating: sesuai dengan TDP CPU Anda</li>
+                <li>Noise level: dB (semakin rendah semakin senyap)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Casing Card -->
+        <div class="component-card">
+          <div class="component-image-container">
+            <img
+              src="/images/casing.jpg"
+              alt="Casing"
+              class="component-image"
+            />
+          </div>
+          <div class="component-content">
+            <div class="component-icon">
+              <i class="fas fa-cube"></i>
+            </div>
+            <h3>Casing / Case</h3>
+            <p class="component-description">
+              Casing adalah rumah untuk semua komponen PC. Pemilihan casing yang
+              tepat mempengaruhi airflow, cable management, estetika, dan
+              kemudahan perakitan. Pilih casing dengan ruang yang cukup dan
+              ventilasi yang baik.
+            </p>
+            <div class="component-specs">
+              <h4>Yang Perlu Diperhatikan:</h4>
+              <ul>
+                <li>Size: Full Tower, Mid Tower (populer), Mini Tower</li>
+                <li>Airflow: mesh front panel lebih baik dari solid</li>
+                <li>Cable management: lubang dan ruang di belakang</li>
+                <li>Fan mounting: berapa fan bisa dipasang</li>
+                <li>Tempered glass, RGB, USB ports di depan</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Info Section -->
+    <section id="panduan" class="info-section">
+      <div class="info-content">
+        <img src="/images/vga.jpg" alt="PC Assembly" class="info-image" />
+        <div class="info-text">
+          <h2>Langkah Merakit PC</h2>
+          <p>
+            Merakit PC sendiri memberikan kepuasan tersendiri dan menghemat
+            biaya. Ikuti panduan step-by-step kami untuk hasil optimal.
+          </p>
+          <ul class="info-list">
+            <li>
+              <i class="fas fa-check-circle"></i> Persiapkan semua komponen dan
+              tools
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i> Pasang CPU dan RAM di
+              motherboard
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i> Install motherboard ke casing
+            </li>
+            <li><i class="fas fa-check-circle"></i> Pasang storage dan GPU</li>
+            <li>
+              <i class="fas fa-check-circle"></i> Koneksikan semua kabel power
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i> Testing dan instalasi OS
+            </li>
+          </ul>
+          <button class="cta-button">Download Panduan PDF</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-section" style="background: #f8f9fa">
+      <div class="info-content">
+        <div class="info-text">
+          <h2>Tips Memilih Komponen</h2>
+          <p>
+            Pemilihan komponen yang tepat menentukan performa dan umur PC Anda.
+            Berikut tips penting yang perlu diperhatikan.
+          </p>
+          <ul class="info-list">
+            <li>
+              <i class="fas fa-lightbulb"></i> Tentukan budget dan kebutuhan
+              utama
+            </li>
+            <li>
+              <i class="fas fa-lightbulb"></i> Prioritaskan CPU dan GPU untuk
+              gaming
+            </li>
+            <li>
+              <i class="fas fa-lightbulb"></i> Cek kompatibilitas antar komponen
+            </li>
+            <li>
+              <i class="fas fa-lightbulb"></i> Investasi pada PSU berkualitas
+            </li>
+            <li>
+              <i class="fas fa-lightbulb"></i> Pertimbangkan upgrade di masa
+              depan
+            </li>
+            <li>
+              <i class="fas fa-lightbulb"></i> Baca review dan benchmark
+              performa
+            </li>
+          </ul>
+          <button class="cta-button">Konsultasi Gratis</button>
+        </div>
+        <img src="/images/pc.jpg" alt="PC Components" class="info-image" />
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+      <p>© 2025 Yodis CS. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://facebook.com/YodisCS" target="_blank">
+          <i class="fab fa-facebook fa-2x"></i>
+        </a>
+        <a href="https://instagram.com/ysptttt" target="_blank">
+          <i class="fab fa-instagram fa-2x"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/yodis-saputra-07674b303"
+          target="_blank"
+        >
+          <i class="fab fa-linkedin fa-2x"></i>
+        </a>
+        <a href="https://threads.net/@ysptttt" target="_blank">
+          <i class="fab fa-threads fa-2x"></i>
+        </a>
+        <a href="https://lynk.id/Yodissaputra" target="_blank">
+          <i class="fas fa-link fa-2x"></i>
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile Menu Toggle
+      const burger = document.querySelector(".burger");
+      const navLinks = document.querySelector(".nav-links");
+
+      burger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking a link
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("active");
+        });
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Add scroll effect to navbar
+      window.addEventListener("scroll", () => {
+        const nav = document.querySelector("nav");
+        if (window.scrollY > 100) {
+          nav.style.background = "rgba(0, 0, 0, 0.95)";
+        } else {
+          nav.style.background = "rgba(0, 0, 0, 0.9)";
+        }
+      });
+
+      // Animate cards on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".component-card").forEach((card) => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(30px)";
+        card.style.transition = "all 0.6s ease-out";
+        observer.observe(card);
+      });
+    </script>
+  </body>
+</html>
